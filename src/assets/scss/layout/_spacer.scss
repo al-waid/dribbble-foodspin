@@ -1,0 +1,71 @@
+.spacer{
+    margin-top: 3rem !important;
+    @include mobile-only{
+        margin-top: 1.2rem !important;
+    }
+}
+
+@for $i from 0 to $spacer-lim {
+    .p-#{$i}{
+        padding: min-space($i) !important;
+        @include mobile-only{
+            &-xs{
+                padding: min-space($i) !important;
+            }
+        }
+    }
+    .m-#{$i}{
+        margin: min-space($i) !important;
+    }
+}
+
+@for $i from 0 to $spacer-lim {
+    .px-#{$i}{
+        padding: 0 min-space($i) !important;
+    }
+    .mx-#{$i}{
+        margin: 0 min-space($i) !important;
+    }
+}
+
+@for $i from 0 to $spacer-lim {
+    .py-#{$i}{
+        padding: min-space($i) 0 !important;
+    }
+    .my-#{$i}{
+        margin: min-space($i) 0 !important;
+    }
+
+
+}
+
+@each $k,$v in $spacer-dim {    
+    @for $i from 0 to $spacer-lim {
+        .p#{$v}-auto{
+            padding-#{$k}: auto !important;
+        }
+        .m#{$v}-auto{
+            margin-#{$k}: auto !important;
+        }
+    }
+}
+
+@each $k,$v in $spacer-dim {    
+    @for $i from 0 to $spacer-lim {
+        .p#{$v}-#{$i}{
+            padding-#{$k}: min-space($i) !important;
+        }
+        .m#{$v}-#{$i}{
+            margin-#{$k}: min-space($i) !important;
+        }
+
+        @include mobile-only{
+            .p#{$v}-xs-#{$i}{
+                padding-#{$k}: min-space($i) !important;
+            }
+            .m#{$v}-xs-#{$i}{
+                margin-#{$k}: min-space($i) !important;
+            }
+        }
+    }
+}

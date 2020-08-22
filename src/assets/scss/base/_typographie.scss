@@ -1,0 +1,72 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: $color-text;
+    font-size: 1.3rem;
+    font-weight: 100;
+    line-height: 1.3;
+}
+
+textarea {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 1.2rem;
+}
+
+@for $i from 1 through 6 {
+    h#{$i}{
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        font-size: 1.4rem + (6-$i)*0.8;
+        color: $color-primary;
+        margin-bottom: 1.5rem + (6-$i)*0.2;
+    }
+} 
+
+p {
+	margin-bottom: 1.8rem;
+}
+
+strong {
+	font-weight: 600;
+}
+
+@each $k,$v in $text-align {
+    .text-#{$v} {
+        text-align: $v;
+    }
+}
+
+@each $k,$v in $v-align {
+    .v-align-#{$v} {
+        vertical-align: $v;
+    }
+}
+
+@each $k,$v in $text-transform {
+    .text-#{$v} {
+        text-transform: $v;
+    }
+}
+
+.text-nowrap {
+	white-space: nowrap
+}
+a{
+    text-decoration: none;
+    color: $color-text;
+}
+ul, ol, dl{
+    list-style: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+blockquote{
+    background-color: $color-secondary;
+    border-left: 0.4rem solid $color-primary;
+    color: $color-text;
+    padding: 1.3rem;
+}

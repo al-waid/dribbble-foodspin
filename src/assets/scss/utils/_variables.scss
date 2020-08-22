@@ -1,0 +1,55 @@
+@use 'sass:list';
+$color-primary: #FF922C;
+$color-secondary: #FFEEDE;
+$color-accent: #0F264C;
+$color-text: #333333;
+$color-white: #FFFFFF;
+
+$base-font-size: 10px;
+$shadow-size: .8rem;
+$spacer-lim: 6;
+$spacer-dim: (top:t, left:l, bottom:b, right:r);
+$text-align: (l:left, r:right, c:center, j:justify);
+$v-align: (t:top, m:middle, b:bottom);
+$g-align: start, end, center, stretch;
+$grid-content-align: list.join($g-align, space-around space-between space-evenly, $separator: comma);
+$grid-content-placement: (
+    auto: auto,
+    start: start,
+    start-end: start end,
+    start-center: start center,
+    start-stretch: start stretch,
+    end: end,
+    end-start: end start,
+    end-center: end center,
+    end-stretch: end stretch,
+    center: center,
+    center-start: center start,
+    center-end: center end,
+    center-stretch: center stretch,
+    stretch: stretch,
+    stretch-start: stretch start,
+    stretch-end: stretch end,
+    stretch-center: stretch center,
+);
+$_grid-content-placement: list.join($grid-content-placement,
+    (
+        around: space-around,
+        around-between: space-around space-between,
+        around-evenly: space-around space-evenly,
+        around-start: space-around start,
+        around-end: space-around end,
+        around-center: space-around center,
+        around-stretch: space-around stretch,
+        between: space-between,
+        between-around: space-between space-around,
+        between-evenly: space-between space-evenly,
+        evenly: space-evenly,
+        evenly-around: space-evenly space-around,
+        evenly-between: space-evenly space-between,
+    ), $separator: comma
+);
+$text-transform: (l:lowercase, u:uppercase, c:capitalize);
+
+$col-lim: 12;
+$col-width: 100% / $col-lim;

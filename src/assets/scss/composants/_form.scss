@@ -1,0 +1,19 @@
+.form-fields-group{
+
+}
+
+.form-field{
+    width: 100%;
+    padding: .8rem;
+    border: .1rem solid #ccc;
+    outline: 0;
+    transition: all 250ms linear;
+}
+
+.field-block-label{
+    display: block;
+}
+
+.field-inline-label{
+    display: inline-block;
+}

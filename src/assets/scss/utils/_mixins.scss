@@ -1,0 +1,38 @@
+@mixin mobile-only {
+    @media screen and (max-width:600px) {
+        @content;
+    }
+}
+@mixin tablet-only {
+    @media screen and (min-width:600px) {
+        @content;
+    }
+}
+
+@mixin mobile-all {
+    @media screen and (max-width:768px) {
+        @content;
+    }
+}
+
+@mixin land-tab {
+    @media screen and (min-width:768px) {
+        @content;
+    }
+}
+
+@mixin med-screen {
+    @media screen and (min-width:992px) {
+        @content;
+    }
+}
+
+@mixin medium-screen {
+    @media screen and (max-width:992px) {
+        @content;
+    }
+}
+
+@mixin box-shadow($size: $shadow-size, $color: $color-text) {
+    box-shadow: 0 $size/2 $size transparentize($color, .6);
+}

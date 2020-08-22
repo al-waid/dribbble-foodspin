@@ -1,0 +1,181 @@
+#nav-menu{
+    margin-left: auto;
+    .menu{
+        display: flex;
+        align-items: center;
+        &__item{
+
+            position: relative;
+            line-height: 6rem;
+
+            &__link{
+                display: block;
+                padding: .8rem 3.3rem;
+                color: $color-text;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                &:hover{
+                    color: #4B5D68;                    
+                }
+            }
+
+            &:hover{
+                > .menu__sub{
+                    top: 6rem;
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            .btn{
+                line-height: initial;
+            }
+        }
+        &--fixed{
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        &__sub{
+            width: 15rem;
+            display: block;
+            position: absolute;
+            border-top: 3px solid $color-primary;
+            background-color: $color-accent;
+            z-index: 100;
+            top: 12rem;
+            transition: all 650ms;
+            opacity: 0;
+            visibility: hidden;
+            
+
+            ul{
+                border-top: none;
+                border-left: 3px solid $color-primary;
+                top: 0;
+                left: 150%;
+                &::before{
+                    border-bottom-color: transparent;
+                    border-right-color: $color-primary;
+                    top: 1rem;
+                    left: -2rem;
+                }
+            }
+            li{
+                line-height: 1.2;
+
+                &:hover{
+                    > .menu__sub{
+                        left: 100%;
+                        top: 0;
+                    }
+                }
+            }
+
+            &::before{
+                content: "";
+                position: absolute;
+                top: -2rem;
+                left: 2.5rem;
+                border: 1rem solid transparent;
+                border-bottom-color: $color-primary;
+            }
+        }
+    }
+}
+
+.menu-icon{
+    display: none;
+    position: absolute;
+    right: 3.5rem;
+    z-index: 9999;
+    span::before, i::before{
+        color: $color-primary;
+        font-size: 2.8rem;
+        font-weight: bold;
+
+    }
+    .open{
+
+    }
+    .close{
+        display: none;
+    }
+}
+
+@include  medium-screen{
+    .menu-icon {
+        display: block;
+    }
+    #nav-menu{
+        &.opned{
+            .close{
+                display: block;
+            }
+            .open{
+                display: none;
+            }
+            .menu{
+                display: flex;
+                padding-top: 4rem;
+            }
+        }
+        .menu{
+            position: fixed;
+            top: 0;
+            left: 0;
+            flex-direction: column;
+            align-items: initial;
+            background-color: $color-accent;
+            z-index: 1000;
+            width: 100%;
+            height: 100vh;
+            display: none;
+            overflow-y: scroll;
+            &__item{
+                line-height: 1.2;
+
+                &:hover{
+                    > .menu__sub{
+                        max-height: initial;
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+
+                .btn{
+                    width: max-content;
+                    margin: 0 auto 0 .8rem;
+                }
+            }
+
+            &__sub{
+                position: initial;
+               // border: 3px solid transparent;
+                border-left:  3px solid $color-primary;
+                border-top: none;
+                margin-left: .8rem;
+                max-height: 0;
+                ul{
+
+                }
+
+                li{
+                    
+
+                    &:hover{
+                        > .menu__sub{
+                            
+                        }
+                    }
+                }
+
+                &::before{
+                    display: none;
+                }
+            }
+        }
+    }
+}

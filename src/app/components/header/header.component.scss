@@ -1,0 +1,10 @@
+.cart{
+    &::before{
+        content: "";
+        height: 2rem;
+        width: 2rem;
+        background: url('../../../assets/images/ic.svg') no-repeat;
+        background-size: cover;
+        display: block;
+    }
+}

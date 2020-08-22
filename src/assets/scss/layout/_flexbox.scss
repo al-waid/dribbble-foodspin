@@ -1,0 +1,71 @@
+.dp-flex{
+    display: flex;
+}
+
+.dp-grid{
+    display: grid;
+}
+
+@each $val in $g-align {
+    .justify-items-#{$val} {
+        justify-items: $val;
+    }
+}
+
+@each $val in $g-align {
+    .align-items-#{$val} {
+        align-items: $val;
+    }
+}
+
+
+@each $k,$v in $grid-content-placement {
+    .place-items-#{$k} {
+        place-items: $v;
+    }
+}
+
+
+/**
+*
+Aligns a grid item inside a cell along the inline (row) axis (as opposed to align-self which aligns along the block (column) axis).
+ This value applies to a grid item inside a single cell.
+*
+*/
+
+@each $val in $g-align {
+    .justify-self-#{$val} {
+        justify-self: $val;
+    }
+}
+
+@each $val in $g-align {
+    .align-self-#{$val} {
+        align-self: $val;
+    }
+}
+
+@each $k,$v in $grid-content-placement {
+    .place-self-#{$k} {
+        place-self: $v;
+    }
+}
+
+@each $val in $grid-content-align {
+    .justify-content-#{$val} {
+        justify-content: $val;
+    }
+}
+
+@each $val in $grid-content-align {
+    .align-content-#{$val} {
+        align-content: $val;
+    }
+}
+
+
+@each $k,$v in $_grid-content-placement {
+    .place-content-#{$k} {
+        place-content: $v;
+    }
+}
