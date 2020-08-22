@@ -11,16 +11,16 @@
           <button class="btn">Order now</button>
         </div>
         <div class="col-8 col-xs-12">
-          
+            
             <div class="menu-slider">
               <div class="rotables" #rot>
-              <div id="rotables-img">
-                <div *ngFor="let elm of menuItems; let i = index;"  class="menu-slider-item item--{{i}}">
-                   <img src="{{ elm.thumb }}" alt="{{ elm.title }}"  title="{{ elm.title }}"> 
+                <div id="rotables-img">
+                  <div *ngFor="let elm of menuItems; let i = index;"  class="menu-slider-item item--{{i}}">
+                     <img src="{{ elm.thumb }}" alt="{{ elm.title }}"  title="{{ elm.title }}"> 
+                  </div>
+                  
                 </div>
-                
               </div>
-            </div>
             </div>
             <div class="slider-nav dp-flex">
               <span (click)="prevSlide()" class="slider-nav__icon btn icon--prev"></span>

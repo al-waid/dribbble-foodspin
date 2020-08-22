@@ -1,19 +1,30 @@
 .homepage{
     position: relative;
+    &::before{
+        content: "";
+        position: fixed;
+        top: -64.5rem;
+        right: -7.6rem;
+        display: block;
+        background-color: #FFEEDE;
+        width: 117.7rem;
+        height: 117.7rem;
+        border-radius: 50%;
+    }
     
     &-wap{
         z-index: 10;
         position: relative;
     }
     #header{
-        position: fixed;
+        /* position: fixed;
         width: 100%;
         z-index: 100;
-        top: 0;
+        top: 0; */
     }
     .home-content{
-        margin-top: 10rem;
-        padding-top: 5rem;
+        /* margin-top: 10rem; */
+        padding-top: .5rem;
         .row{
         }
         .menu-details-lg{
@@ -21,6 +32,10 @@
         }
     }
 }
+.homepage.homepage--vegan::before{
+    background-color: #EAFFE2 !important;
+}
+
 .menu-details{
     margin-top: 10rem;
     .price{
@@ -43,25 +58,20 @@
 
     }
 }
+
 .menu-slider{
-    position: fixed;
-    top: -64.5rem;
-    right: -7.6rem;
-    display: block;
-    background-color: #FFEEDE;
-    width: 117.7rem;
-    height: 117.7rem;
-    border-radius: 50%;
-    clip-path: circle();
+    
+    clip-path: circle(59.01rem at 43.3rem -21.4rem);
+    width: 80rem;
+    height: 39.2rem;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     overflow: hidden;
-    
     .rotables{
         position: relative;
         bottom: 0;
-        width: 55%;
+        width: 85%;
         #rotables-img{
             position: absolute;
             left: 50%; top: 50%;
@@ -91,16 +101,21 @@
                 border-radius: 50%;
             }
         }
-    }
+    }  
+    
+    
+    
     
 }
 
 .slider-nav{
-    margin-top: 20rem;
+    //margin-top: 20rem;
     justify-content: space-around;
     align-items: flex-end;
     position: absolute;
-    width: 60%;
+    width: 80rem;
+    top: 33rem;
+    left: 59rem;
     &__icon{
         
         background-color: #FF922C;

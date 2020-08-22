@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
  
   title = 'foodspin';
   mRx: number;
@@ -87,12 +87,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   slideItem: any;
   currentuMenuItem: any;
   activeColor = "";
-  activeTopBgColor = "";
+  homeContent: any;
+  sliderTimer;
 
   @ViewChild("rot", { static: true }) rotable: ElementRef;
   Position = {
     ellipse: function(n, rx, ry, so, wh, idd, cw) {
-      var ss: CSSStyleSheet  = document.styleSheets[0];
+      var ss: any  = document.styleSheets[0];
       ss.insertRule('#' + idd + ' {  width: ' + String((rx * 2) + wh) + 'px; height: ' + String((ry * 2) + wh) + 'px; }', 1);
       
       for (var i = 0; i < n; i++) {
@@ -118,18 +119,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.slideItemsNumber = this.menuItems.length;
     this.currentSlideImg = document.querySelector('.slider-nav__img');
     this.rotableContainer = document.querySelector('#rotables-img');
+    this.homeContent = document.querySelector('.home-content');
     this.rotationSteep = 360 / this.slideItemsNumber;
     this.getCurrentItem();
     this.currentSlideImg.src = this.menuItems.length > 0 ? this.currentuMenuItem.image : ""; 
     this.Position.ellipse(this.slideItemsNumber, this.mRx, this.mRx, 0, 100, 'rotables-img', false);
 
     this.autoRunAnimation();
-  }
-
-  ngAfterViewInit(): void {
-    /* this.slideItem = document.querySelectorAll('.menu-slider-item');
-    this.slideItem.style.transform = 'rotate(-45deg)'; */
-
+    
   }
 
   mooveSlide (next = true) {
@@ -150,7 +147,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   getCurrentItem() {
     this.currentuMenuItem = this.menuItems[this.currentSlideIdx];
     this.activeColor = this.currentuMenuItem.vegan ? this.color.green : this.color.orange;
-    this.activeTopBgColor = this.currentuMenuItem.vegan ? this.color.light_green : this.color.pink;
     this.updateColorSheme();
   }
 
@@ -159,16 +155,22 @@ export class AppComponent implements OnInit, AfterViewInit {
       el.style.backgroundColor = this.activeColor;
     });  
    const price:any = document.querySelector('.price');
-   const top:any = document.querySelector('.menu-slider');
+   const top:any = document.querySelector('.homepage');
    const details:any = document.querySelector('.menu-details');
    price.style.color = this.activeColor;
-   top.style.backgroundColor = this.activeTopBgColor;
+
+   if(!(this.currentuMenuItem.vegan && top.classList.contains('homepage--vegan'))) top.classList.remove('homepage--vegan');
+   
+   if(this.currentuMenuItem.vegan && !top.classList.contains('homepage--vegan'))  top.classList.add('homepage--vegan');
+   
+   
    if(details.classList.contains('menu-animation')) details.classList.remove("menu-animation");
    details.offsetHeight;
    details.classList.add("menu-animation");
   }
 
   nextSlide () {
+    
     this.currentSlideIdx = this.currentSlideIdx >= this.slideItemsNumber-1 ? 0 : this.currentSlideIdx + 1; 
     this.mooveSlide();
   }
@@ -179,8 +181,37 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   autoRunAnimation() {
-    setInterval( () => {
+    
+    this.playSlider();
+    console.log(this.sliderTimer);
+    this.homeContent.addEventListener("mouseover", ()=>this.pauseSlider(), false);
+    this.homeContent.addEventListener("mouseleave", this.playSlider.bind(this), false);
+    /* const lastPoint = {x: null, y: null}
+    this.homeContent.addEventListener("mousemove", e => {
+      if(e.clientX > lastPoint.x) this.nextSlide();
+      if(e.clientX < lastPoint.x) this.prevSlide();
+      lastPoint.x = e.clientX
+      lastPoint.y = e.clientY
+    }); */
+  }
+
+  pauseSlider(){
+    console.log('-----------Pause---------------', this.sliderTimer);
+    if(this.sliderTimer){
+      clearInterval(this.sliderTimer);
+      this.sliderTimer = null;
+      console.log(this.sliderTimer);
+    }
+    
+  }
+
+  playSlider(){ 
+    console.log('-----------Play---------------');
+    var i = 0;
+    this.sliderTimer = setInterval( () => {
+      
+      console.log(i++);
       this.nextSlide();
-    }, 6000 );
+    }, 3000 );
   }
 }
