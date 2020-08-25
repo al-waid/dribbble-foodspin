@@ -3,32 +3,42 @@
   <app-header class="mb-5" id="header"></app-header>
   <div class="home-content">
     <div class="container">
-      <div class="row">
-        <div class="col-4 xs-hidden  menu-details menu-details--lg">
+      <div class="row"><!-- -->
+        <div class="col-4  xs-hidden  menu-details menu-details--lg">
           <span class="price">${{ currentuMenuItem.price }}</span>
           <h3 class="title"> {{ currentuMenuItem.title }} </h3>
           <p class="desc"> {{ currentuMenuItem.desc }} </p>
           <button class="btn">Order now</button>
         </div>
-        <div class="col-8 col-xs-12">
-            
-            <div class="menu-slider">
-              <div class="rotables" #rot>
-                <div id="rotables-img">
-                  <div *ngFor="let elm of menuItems; let i = index;"  class="menu-slider-item item--{{i}}">
-                     <img src="{{ elm.thumb }}" alt="{{ elm.title }}"  title="{{ elm.title }}"> 
+        <div class="col-8 col-xs-12 med-w">
+            <div id="slider">
+              <div class="menu-slider">
+                <div class="rotables" #rot>
+                  <div id="rotables-img">
+                    <div *ngFor="let elm of menuItems; let i = index;"  class="menu-slider-item item--{{i}}">
+                      <img src="{{ elm.thumb }}" alt="{{ elm.title }}"  title="{{ elm.title }}"> 
+                    </div>
+                    
                   </div>
-                  
                 </div>
               </div>
+              <div class="slider-nav dp-flex">
+                <span (click)="prevSlide()" class="slider-nav__icon btn icon--prev"></span>
+                <img #slideImg class="slider-nav__img" src="https://via.placeholder.com/300" alt="">
+                <span (click)="nextSlide()" class="slider-nav__icon btn icon--next"></span>
+              </div>
             </div>
-            <div class="slider-nav dp-flex">
-              <span (click)="prevSlide()" class="slider-nav__icon btn icon--prev"></span>
-              <img #slideImg class="slider-nav__img" src="https://via.placeholder.com/300" alt="">
-              <span (click)="nextSlide()" class="slider-nav__icon btn icon--next"></span>
-            </div>
+            
+
           </div>
-        <div class="col-xs-12 xs-visible"></div>
+         <div class="col-xs-12 xs-visible menu-details px-2">
+            <div class="dp-flex">
+              <span class="price">${{ currentuMenuItem.price }}</span>
+              <h3 class="title ml-auto"> {{ currentuMenuItem.title }} </h3>
+            </div>
+            <p class="desc"> {{ currentuMenuItem.desc }} </p>
+            <button class="btn btn--block">Order now</button>
+         </div>
       </div>
 
       

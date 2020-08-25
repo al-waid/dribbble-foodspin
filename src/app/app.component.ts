@@ -123,10 +123,11 @@ export class AppComponent implements OnInit {
     this.rotationSteep = 360 / this.slideItemsNumber;
     this.getCurrentItem();
     this.currentSlideImg.src = this.menuItems.length > 0 ? this.currentuMenuItem.image : ""; 
-    this.Position.ellipse(this.slideItemsNumber, this.mRx, this.mRx, 0, 100, 'rotables-img', false);
+    const itemWdth = window.innerWidth <= 768 ? 50 : 100;
+    this.Position.ellipse(this.slideItemsNumber, this.mRx, this.mRx, 0, itemWdth, 'rotables-img', false);
 
-    this.autoRunAnimation();
-    
+    //this.autoRunAnimation();
+    //console.log();
   }
 
   mooveSlide (next = true) {
@@ -137,7 +138,7 @@ export class AppComponent implements OnInit {
       this.currentSlideImg.classList.remove("menu-img-animation");
     }
     this.rad = next ? this.rad + this.rotationSteep : this.rad - this.rotationSteep;
-    this.rotableContainer.style.transform = 'translate(-50%, -50%) rotate('+this.rad+'deg)';
+    this.rotableContainer.style.transform = window.innerWidth <= 768 ? 'translate(-50%, -61%) rotate('+this.rad+'deg)' : 'translate(-50%, -50%) rotate('+this.rad+'deg)';
     this.rotableContainer.style.transition = 'transform 3s  ease-in-out';
     this.currentSlideImg.offsetHeight;
     this.currentSlideImg.classList.add("menu-img-animation");
@@ -186,13 +187,17 @@ export class AppComponent implements OnInit {
     console.log(this.sliderTimer);
     this.homeContent.addEventListener("mouseover", ()=>this.pauseSlider(), false);
     this.homeContent.addEventListener("mouseleave", this.playSlider.bind(this), false);
-    /* const lastPoint = {x: null, y: null}
-    this.homeContent.addEventListener("mousemove", e => {
-      if(e.clientX > lastPoint.x) this.nextSlide();
+    const lastPoint = {x: null, y: null}
+    this.homeContent.addEventListener("touchstart", e => {
+      /* if(e.clientX > lastPoint.x) this.nextSlide();
       if(e.clientX < lastPoint.x) this.prevSlide();
       lastPoint.x = e.clientX
       lastPoint.y = e.clientY
-    }); */
+      console.log(JSON.stringify(lastPoint)); */
+      console.log(e);
+    });
+
+    
   }
 
   pauseSlider(){
@@ -212,6 +217,6 @@ export class AppComponent implements OnInit {
       
       console.log(i++);
       this.nextSlide();
-    }, 3000 );
+    }, 6000 );
   }
 }

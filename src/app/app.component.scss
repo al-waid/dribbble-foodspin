@@ -1,8 +1,16 @@
+@import "../assets/scss/utils/mixins";
+
 .homepage{
     position: relative;
+    max-width: 152rem;
+    margin: 0 auto;
+    @media screen and (max-width:1200px) {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     &::before{
         content: "";
-        position: fixed;
+        position: absolute;
         top: -64.5rem;
         right: -7.6rem;
         display: block;
@@ -10,8 +18,29 @@
         width: 117.7rem;
         height: 117.7rem;
         border-radius: 50%;
+        @include  mobile-all{
+            top: -50vw;
+            right: 0 !important;
+            left: 0;
+            width: 100vw;
+            height: 100vw; 
+        }
     }
-    
+    @media screen and (max-width:1200px) {
+        &::before{
+            position: fixed;
+            right: -22.1rem;
+        }
+        padding: 0 1.5rem;
+        .container{
+            padding: 0 .5rem;
+        }
+    }
+    @include mobile-all {
+        .med-w{
+            width: 100% !important;
+        }
+    }
     &-wap{
         z-index: 10;
         position: relative;
@@ -45,6 +74,9 @@
     .title{
         font-size: 3.5rem;
         color: #111;
+        @include mobile-all{
+            margin-left: auto;
+        }
     }
     .desc{
         padding: .5rem;
@@ -58,85 +90,112 @@
 
     }
 }
-
-.menu-slider{
-    
-    clip-path: circle(59.01rem at 43.3rem -21.4rem);
+#slider{
+    position: relative;
     width: 80rem;
-    height: 39.2rem;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    overflow: hidden;
-    .rotables{
-        position: relative;
-        bottom: 0;
-        width: 85%;
-        #rotables-img{
-            position: absolute;
-            left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
+    @include  mobile-all{
+        width: 100%;
+    }
+    .menu-slider{        
+        clip-path: circle(59.01rem at 43.3rem -21.4rem);
+        width: 100%;
+        height: 39.2rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+        @include  mobile-all{
+            clip-path: circle(50vw at 45vw -16.3vw);
+            height: 50vw;
+        }
+        .rotables{
+            position: relative;
+            bottom: 0;
+            width: 85%;
+            @include  mobile-all{
+                width: 80%;
+            }
+            #rotables-img{
+                position: absolute;
+                left: 50%; top: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                
+                &::before{
+                    content: "";
+                    display: block;
+                    height: 85%;
+                    width: 85%;
+                    border-radius: 50%;
+                    border: 2px dashed #E87F1E;
+                    top: 6rem;
+                    left: 6rem;
+                    position: absolute;
+                }
+                @include mobile-all{
+                    transform: translate(-50%, -61%);
+                    &::before{
+                        top: 2rem;
+                        left: 2rem;
+                    }
+                }
+            }
+            .menu-slider-item{
+                position: absolute;
+                transition: transform 0.2s ease;
+                width: 100px; height:100px;
+                @include mobile-all{
+                    width: 50px; height:50px;
+                }
+                &:hover{
+                    transform: scale(1.2); cursor: pointer; 
+                }
+                img{
+                    border-radius: 50%;
+                }
+            }
+        }  
+        
+    }
+
+    .slider-nav{
+        justify-content: space-around;
+        align-items: flex-end;
+        position: absolute;
+        width: 100%;
+        top: 20rem;
+        &__icon{
             
+            background-color: #FF922C;
+            display: inline-block;
+            padding: .5rem;
+            border-radius: 100%;
             &::before{
                 content: "";
+                height: 2.5rem;
+                width: 2.5rem;
+                background: url('../assets/images/ic2.svg')  no-repeat;
+                background-size: cover;
                 display: block;
-                height: 85%;
-                width: 85%;
-                border-radius: 50%;
-                border: 2px dashed #E87F1E;
-                top: 6rem;
-                left: 6rem;
-                position: absolute;
+            }
+            
+        }
+        &__img{
+            border-radius: 50%;
+            max-width: 32rem;
+        }
+
+        @include  mobile-all{                
+            top: 8rem;
+            &__img{
+                width: 40vw;
             }
         }
-        .menu-slider-item{
-            position: absolute;
-            transition: transform 0.2s ease;
-            width: 100px; height:100px;
-            &:hover{
-                transform: scale(1.2); cursor: pointer; 
-            }
-            img{
-                border-radius: 50%;
-            }
-        }
-    }  
-    
-    
-    
-    
+    }
 }
 
-.slider-nav{
-    //margin-top: 20rem;
-    justify-content: space-around;
-    align-items: flex-end;
-    position: absolute;
-    width: 80rem;
-    top: 33rem;
-    left: 59rem;
-    &__icon{
-        
-        background-color: #FF922C;
-        display: inline-block;
-        padding: .5rem;
-        border-radius: 100%;
-        &::before{
-            content: "";
-            height: 2.5rem;
-            width: 2.5rem;
-            background: url('../assets/images/ic2.svg')  no-repeat;
-            background-size: cover;
-            display: block;
-        }
-        
-    }
-    &__img{
-        border-radius: 50%;
-        max-width: 32rem;
-    }
-}
+
+
 
 .menu-img-animation{
     animation: scaleIn 500ms ease-in-out, scaleOut 1000ms 500ms ease-in-out;
@@ -150,6 +209,9 @@
 .footer{
     margin-top: 12rem;
     display: block;
+    @include  mobile-all{                
+        margin-top: 3rem;
+    }
 }
 
 
